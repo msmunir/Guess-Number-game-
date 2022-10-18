@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>GuessNumber</title>
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        
+        <form id="guessNumberForm" class="guessNumber-Form">
+            <div class="headline">
+                <h1>Guess! a number game</h1>    
+            </div>
+            <div class="form-content">
+                <div class="input-goup">   
+                    <label for="getNumber" class="input-label">Guess a number between 1 and 100</label>
+                    <input type="number" id="getNumber" class="form-control">
+                    <p id="demo"></p>
+                </div>
+                <div>
+                    <button class="btn" id="btn-submit" >Guess!</button>
+                    <button onclick="playAgain()" type="reset" class="btn btn-reset" id="btn-reset">Paly again</button>
+                </div>
+                <div class="output-Text">
+                    <p id="outputText">Output</p>
+                    <p id="guessedNumber">Guessed Numbers: 0</p>
+                    <p id="numOfGuess">Number of Guesses: 0</p>
+                    <!-- <small></small> -->
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+ <script src="script.js"></script>
+</body>
+</html>
