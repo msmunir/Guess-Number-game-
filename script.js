@@ -1,29 +1,27 @@
 
-const form = document.querySelector("#guessNumberForm");
-
-
-const randomNumber = Math.floor(Math.random() * 100 + 1);
-let numberOfGuess = 0;
-const userGuess = [];
-
+const form = document.querySelector('#guessNumberForm');
 const getNumber = document.querySelector('#getNumber');
-const msgOutput = document.querySelector('#outputText');
+const outputText = document.querySelector('#outputText');
 const guessedNumber = document.querySelector('#guessedNumber');
 const numOfGuess = document.querySelector('#numOfGuess');
+
+const randomNumber = Math.floor(Math.random() * 100 + 1);
+const userGuess = [];
+let numberOfGuess = 0;
 
 const checkNumber = () => {
 
     if (getNumber.value === '') {
         console.log("Number field can not be empty");
-        msgOutput.textContent = "Number field can not be empty.";
-        msgOutput.style.color = 'red';
+        outputText.textContent = "Number field can not be empty.";
+        outputText.style.color = 'red';
         return false;
     }
     else if (getNumber.value < 1 || getNumber.value > 100) {
-        msgOutput.style.color = 'red';
-        console.log("Number shoud be between 1 & 100");
-        msgOutput.textContent = "Number shoud be between 1 & 100";
-        msgOutput.style.color = 'red';
+        outputText.style.color = 'red';
+        console.log("Number shoud be between 1 and 100");
+        outputText.textContent = "Number shoud be between 1 and 100";
+        outputText.style.color = 'red';
         return false;
     }
     else {
@@ -31,34 +29,36 @@ const checkNumber = () => {
         numberOfGuess += 1;
         
         if (getNumber.value > randomNumber){
-            console.log("Your guessed number is higher.");
-            msgOutput.textContent = "Your guessed number is higher.";
-            msgOutput.style.color = 'red';
-            
-            guessedNumber.textContent = "Guessed Numbers: " + userGuess;
-            numOfGuess.textContent = "Number of Guesses: " + numberOfGuess;
-            return false;
+            console.log("Your number is higher :(");
+            outputText.textContent = "Your number is higher. Try again :(";
+            setError();
         }
         else if (getNumber.value < randomNumber){
-            console.log("Your guessed number is lower.");
-            msgOutput.textContent = "Your guessed number is lower.";
-            msgOutput.style.color = 'red';
-
-            guessedNumber.textContent = "Guessed Numbers: " + userGuess;
-            numOfGuess.textContent = "Number of Guesses: " + numberOfGuess;
-            return false;
+            console.log("Your number is lower :(");
+            outputText.textContent = "Your number is lower. Try again :(";
+            setError();
         }
         else {
             console.log("You have guessed it right. :)");
-            msgOutput.textContent = "You have guessed it right. :)";
-            msgOutput.style.color = 'green';
-            
-            guessedNumber.textContent = "Guessed Numbers: " + userGuess;
-            numOfGuess.textContent = "Number of Guesses: " + numberOfGuess;
-            return true;
+            outputText.textContent = "You have guessed it right. :)";
+            setSuccess();
         }
     }
 }
+
+function setError () {
+    outputText.style.color = 'red';
+    guessedNumber.textContent = "Guessed Numbers: " + userGuess;
+    numOfGuess.textContent = "Number of Guesses: " + numberOfGuess;
+    return false;
+}
+const setSuccess = () => {
+    outputText.style.color = 'green';
+    guessedNumber.textContent = "Guessed Numbers: " + userGuess;
+    numOfGuess.textContent = "Number of Guesses: " + numberOfGuess;
+    return true;
+}
+
 
 const playAgain = () => {
     location.reload();
