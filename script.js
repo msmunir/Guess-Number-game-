@@ -3,13 +3,13 @@ const form = document.querySelector("#guessNumberForm");
 
 
 const randomNumber = Math.floor(Math.random() * 100 + 1);
-const numberOfGuess = 0;
+let numberOfGuess = 0;
 const userGuess = [];
 
 const getNumber = document.querySelector('#getNumber');
 const msgOutput = document.querySelector('#outputText');
-const msgNumbers = document.querySelector('#guessedNumber');
-const msgGuesses = document.querySelector('#numOfGuess');
+const guessedNumber = document.querySelector('#guessedNumber');
+const numOfGuess = document.querySelector('#numOfGuess');
 
 const checkNumber = () => {
 
@@ -20,29 +20,43 @@ const checkNumber = () => {
         return false;
     }
     else if (getNumber.value < 1 || getNumber.value > 100) {
-
         msgOutput.style.color = 'red';
         console.log("Number shoud be between 1 & 100");
         msgOutput.textContent = "Number shoud be between 1 & 100";
-        return false;
-    }
-    else if (getNumber.value > randomNumber){
-        console.log("Your guessed number is higher.");
-        msgOutput.textContent = "Your guessed number is higher.";
-        msgOutput.style.color = 'red';
-        return false;
-    }
-    else if (getNumber.value < randomNumber){
-        console.log("Your guessed number is lower.");
-        msgOutput.textContent = "Your guessed number is lower.";
         msgOutput.style.color = 'red';
         return false;
     }
     else {
-        console.log("You have guessed it right. :)");
-        msgOutput.textContent = "You have guessed it right. :)";
-        msgOutput.style.color = 'green';
-        return true;
+        userGuess.push(getNumber.value);
+        numberOfGuess += 1;
+        
+        if (getNumber.value > randomNumber){
+            console.log("Your guessed number is higher.");
+            msgOutput.textContent = "Your guessed number is higher.";
+            msgOutput.style.color = 'red';
+            
+            guessedNumber.textContent = "Guessed Numbers: " + userGuess;
+            numOfGuess.textContent = "Number of Guesses: " + numberOfGuess;
+            return false;
+        }
+        else if (getNumber.value < randomNumber){
+            console.log("Your guessed number is lower.");
+            msgOutput.textContent = "Your guessed number is lower.";
+            msgOutput.style.color = 'red';
+
+            guessedNumber.textContent = "Guessed Numbers: " + userGuess;
+            numOfGuess.textContent = "Number of Guesses: " + numberOfGuess;
+            return false;
+        }
+        else {
+            console.log("You have guessed it right. :)");
+            msgOutput.textContent = "You have guessed it right. :)";
+            msgOutput.style.color = 'green';
+            
+            guessedNumber.textContent = "Guessed Numbers: " + userGuess;
+            numOfGuess.textContent = "Number of Guesses: " + numberOfGuess;
+            return true;
+        }
     }
 }
 
